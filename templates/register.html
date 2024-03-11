@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Regisztrálás</h1>
+<form method="post">
+    {% csrf_token %}
+    <div>
+        <label>Felhasználónév</label>
+        {{ form.username }}
+    </div>
+
+    <div>
+        <label>Email</label>
+        {{ form.email }}
+    </div>
+    
+    <div>
+        <label>Jelszó</label>
+        {{ form.password1 }}
+    </div>
+
+    <div>
+        <label>Jelszó megerősítése</label>
+        {{ form.password2 }}
+    </div>
+    <input type='submit' value='Regisztrálás'>
+</form>
+
+<a href="{% url 'login' %}">
+    <button>Bejelentkezés</button>
+</a>
+{% endblock  %}
