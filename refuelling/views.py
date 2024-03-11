@@ -3,11 +3,14 @@ from rest_framework.response import Response
 from .models import Refuel
 from .serializers import RefuelSerializer
 
+from django.contrib.auth.models import AnonymousUser
+
 # Create your views here.
 
+@api_view(['GET'])
 def getRefuels(request):
-    if request.User is not None:
-        refuels = Refuel.objects.filter(user=request.User)
+    if not isinstance(request.user, AnonymousUser):
+        refuels = Refuel.objects.filter(user=request.user)
         serializer = RefuelSerializer(refuels, many=True)
-        return Response(serializer)
+        return Response(serializer.data)
     return Response({'message': 'User is undefined.'})
