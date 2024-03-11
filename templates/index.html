@@ -1,7 +1,10 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Hello Django</h1>
+<div>{{ user.username }}</div>
+
+<div id="refuels"></div>
 
 <a href="{% url 'logout' %}">Kijelentkezés</a>
+<script src="/static/index.js" defer></script>
 {% endblock  %}
